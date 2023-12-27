@@ -3,6 +3,47 @@ import requests
 import os
 from dotenv import load_dotenv
 
+NOTEBOOK_CONTENT = """{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Part 1"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Part 2"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "language_info": {
+   "name": "python"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
+"""
+
 if len(sys.argv) != 2:
     print("Run from command line!\n usage: python make_day.py <day_number>")
     sys.exit(1)
@@ -42,7 +83,7 @@ if response.status_code == 200:
     # Create the solution notebook
     if not os.path.exists(os.path.join(folder_path, 'solution.ipynb')):
         with open(os.path.join(folder_path, 'solution.ipynb'), 'w', encoding='utf-8') as file:
-            file.write('')
+            file.write(NOTEBOOK_CONTENT)
 else:
     print(f"Request failed with status code: {response.status_code}")
     print(response.text)
