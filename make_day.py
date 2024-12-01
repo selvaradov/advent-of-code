@@ -54,7 +54,8 @@ aoc_cookie = os.environ.get('AOC_COOKIE')
 
 # Get the day number from the command line
 day = sys.argv[1]
-folder_path = f'day_{day}'
+year = 2024
+folder_path = f'{year}/day_{day}'
 
 # check if data for this day already exists
 if os.path.exists(os.path.join(folder_path, 'input.txt')):
@@ -62,7 +63,7 @@ if os.path.exists(os.path.join(folder_path, 'input.txt')):
     sys.exit(1)
 
 # Make the GET request
-base_url = f'https://adventofcode.com/2023/day/{day}'
+base_url = f'https://adventofcode.com/{year}/day/{day}'
 url = base_url + '/input'
 print(f"Making GET request based on {base_url}")
 
@@ -71,7 +72,6 @@ response = requests.get(url, headers=headers)
 
 # Check if the request was successful, save the text file
 if response.status_code == 200:
-    folder_path = f'day_{day}'
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)
 
